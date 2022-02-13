@@ -94,7 +94,7 @@ def E_step():
     print('*** we are in the E-Step ***')
     iter = iter + 1
     print("E step iter:", iter)
-    rs=np.zeros(n_features,n_clusters)
+    rs=np.zeros((n_features,n_clusters))
     for j in range(len(X)):
         # print(X[i])
         deno = 0
@@ -110,7 +110,7 @@ def M_step1():
     global ws
     print('*** we are in the M-Step1 ***')
     ws = rs / R
-    muhats = np.zeros(n_clusters,2)
+    muhats = np.zeros((n_clusters,2))
     for j in range(len(X)):
         for i in range(n_clusters):
             muhats[i] += ws[j][i]*X[j]
@@ -119,7 +119,7 @@ def M_step1():
 
 def M_step3():
     print('*** we are in the M-Step3 ***')
-    sigmahats = np.zeros(n_clusters,2,2)
+    sigmahats = np.zeros((n_clusters,2,2))
     for j in range(n_features):
         for i in range(n_clusters):
             sigmahats[i] += ws[j][i] * np.outer(X[j]-mus[i],X[j]-mus[i])
