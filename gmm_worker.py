@@ -39,7 +39,7 @@ def gmm_tasks(task, **kwargs):
         results = E_step()
         return results
     elif task=='M_step1':
-        R = np.asarray(json.load["R"])
+        R = np.asarray(json_load["R"])
         results = M_step1()
         return results
     elif task=='M_step3':
