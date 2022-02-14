@@ -105,12 +105,14 @@ def E_step():
             rs[j][i] = norm(mus[i],sigmas[i],X[j])*pis[i] / deno
         # print(X[i].label)
     print(" *** E-step done ***")
-    return json.dumps({'s':deepcopy(np.sum(rs,axis=0))},cls=NumpyEncoder)
+    return json.dumps({'s':np.sum(deepcopy(rs),axis=0)},cls=NumpyEncoder)
 
 def M_step1():
-    global ws, rs, R
+    global ws, R
     print('*** we are in the M-Step1 ***')
-    ws = rs / R
+    ws=np.zeros((len(X),n_clusters))
+    for i in range(n_clusters):
+        ws[:,i] = rs[:,i] / R[i] 
     muhats = np.zeros((n_clusters,n_features))
     for j in range(len(X)):
         for i in range(n_clusters):
