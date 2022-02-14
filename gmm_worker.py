@@ -91,7 +91,7 @@ def data_to_workers(C, X):
 
 
 def E_step():
-    global iter
+    global iter, rs
     print('*** we are in the E-Step ***')
     iter = iter + 1
     print("E step iter:", iter)
@@ -108,10 +108,10 @@ def E_step():
     return json.dumps({'s':deepcopy(np.sum(rs,axis=0))},cls=NumpyEncoder)
 
 def M_step1():
-    global ws
+    global ws, rs, R
     print('*** we are in the M-Step1 ***')
     ws = rs / R
-    muhats = np.zeros((n_clusters,2))
+    muhats = np.zeros((n_clusters,n_features))
     for j in range(len(X)):
         for i in range(n_clusters):
             muhats[i] += ws[j][i]*X[j]
