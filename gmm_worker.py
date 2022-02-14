@@ -33,7 +33,7 @@ n_features = 0
 def gmm_tasks(task, **kwargs):
     json_dump = kwargs['json_dump']
     json_load = json.loads(json_dump)
-    global mus,sigmas, pis, R, X, n_clusters, n_features, rs
+    global mus,sigmas, pis, R, X, n_clusters, n_features, rs, iter
     if task == 'E_step':
         sigmas = np.asarray(json_load["sigmas"])
         results = E_step()
@@ -48,6 +48,7 @@ def gmm_tasks(task, **kwargs):
         results = M_step3()
         return results
     elif task == 'data_to_workers':
+        iter = 0
         mus = np.asarray(json_load["mus"])
         sigmas = np.asarray(json_load["sigmas"])
         pis = np.asarray(json_load["pis"])
@@ -90,7 +91,7 @@ def data_to_workers(C, X):
 
 
 def E_step():
-    global iter
+#     global iter
     print('*** we are in the E-Step ***')
     iter = iter + 1
     print("E step iter:", iter)
