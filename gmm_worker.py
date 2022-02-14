@@ -105,7 +105,7 @@ def E_step():
             rs[j][i] = norm(mus[i],sigmas[i],X[j])*pis[i] / deno
         # print(X[i].label)
     print(" *** E-step done ***")
-    return json.dumps({'rs':deepcopy(np.sum(rs, axis = 0))},cls=NumpyEncoder)
+    return json.dumps({'s':deepcopy(np.sum(rs,axis=0))},cls=NumpyEncoder)
 
 def M_step1():
     global ws
