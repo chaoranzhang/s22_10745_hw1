@@ -91,7 +91,7 @@ def data_to_workers(C, X):
 
 
 def E_step():
-#     global iter
+    global iter
     print('*** we are in the E-Step ***')
     iter = iter + 1
     print("E step iter:", iter)
